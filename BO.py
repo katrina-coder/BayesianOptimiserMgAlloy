@@ -236,8 +236,10 @@ class alloys_bayes_opt:
     
     ## MO: Mulitu-Objective function (UTS and Duuctility)
     def MO_next_suggestions(self):  
-        rf1 = self.model1
-        rf2 = self.model2
+        rf1 = self.define_rf_model()
+        rt1.fit(self.x,self.y)
+        rf2 = self.define_rf_model()
+        rf2.fit(self.x,self.z)
         gp = GaussianProcessRegressor(kernel=self.kernel,
                                            n_restarts_optimizer=9,
                                            normalize_y= self.normalize_y,
