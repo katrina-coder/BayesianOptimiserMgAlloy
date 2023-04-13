@@ -10,9 +10,9 @@ import random
 
 from IPython import display as disp
 if 'google.colab' in str(get_ipython()):
-    from BayesianOptimiser-MgAlloy.model_paths import models
-    from BayesianOptimiser-MgAlloy.BO import alloys_bayes_opt
-    from BayesianOptimiser-MgAlloy.BO_append import alloys_bayes_opt_append
+    from BayesianOptimiserMgAlloy.model_paths import models
+    from BayesianOptimiserMgAlloy.BO import alloys_bayes_opt
+    from BayesianOptimiserMgAlloy.BO_append import alloys_bayes_opt_append
 else:
     from model_paths import models
     from BO import alloys_bayes_opt
