@@ -77,13 +77,11 @@ class alloys_bayes_opt:
                 self.y = UTS
             else:
                 self.y = Ductility
-            self.gp = gp_model_list[0]
             self.model = rf_model_list[0]
             
         else:
             self.MO_bo_suggestion_df = pd.DataFrame(columns= self.elem_og_sorted +
                                                 [output_names[0] + "_model" ,
-                                                 
                                                  output_names[1] + "_model"  
                                                  ])
             self.y = UTS
@@ -107,7 +105,7 @@ class alloys_bayes_opt:
                                            normalize_y= self.normalize_y,
                                            alpha=1e-2, random_state=0)
         self.gp.fit(self.x, self.y)
-            
+        
         self.utility = UtilityFunction(kind=self.util_type, kappa=self.kappa, xi=0)
         self.model = self.define_rf_model()
         self.model.fit(self.x,self.y)
@@ -205,11 +203,6 @@ class alloys_bayes_opt:
         
         sampler_df = pd.DataFrame (final_samples, columns= list(bound_dict.keys()))
         sampler_df = sampler_df[self.elem_og_sorted]
-
-
-        #print(self.elem_og_sorted)
-        #print(sampler_df.columns)
-
         return sampler_df
     
     def get_suggestions(self):
@@ -230,54 +223,21 @@ class alloys_bayes_opt:
                 
             utils = self.utility.utility(samples_df, self.gp, 0)
             next_point_index = np.argmax(utils)
-            
             predicted_Y, std = self.gp.predict(samples_df, return_std=True)
             
             X_next = self.samples_df.iloc[next_point_index, :]
             Y_next = self.model.predict(X_next.values.reshape(1,-1))  
             Next_alloy = pd.concat([pd.Series(X_next), pd.Series(Y_next)], axis=0, ignore_index=True)
             #Next_alloy = pd.concat([Next_alloy, pd.Series(predicted_Y[next_point_index])], axis=0, ignore_index=True)
-            self.bo_suggestion_df.loc[self.bo_suggestion_df.shape[0]] = list(Next_alloy) # to add a new row to dataframe with the same columns order
-            
-            # if self.append_suggestion:                
-            #     self.x = pd.concat([self.x , pd.DataFrame(X_next).transpose()], ignore_index=True)                
-            #     self.y = pd.concat([self.y, pd.Series(Y_next)], ignore_index=True)
-                
-                # self.model = self.define_rf_model()
-                # self.model.fit(self.x, self.y)
-                # self.refit_gp_model(self.x, self.y)                 
+            self.bo_suggestion_df.loc[self.bo_suggestion_df.shape[0]] = list(Next_alloy) # to add a new row to dataframe with the same columns order                 
 
         return self.bo_suggestion_df
                  
     
     ## MO: Mulitu-Objective function (UTS and Duuctility)
-    def MO_next_suggestions(self):        
-        ## gp1 = GaussianProcessRegressor(kernel=self.kernel,
-        ##                                    n_restarts_optimizer=9,
-        ##                                    normalize_y= self.normalize_y,
-        ##                                    alpha=1e-2, random_state=0)
-        ## gp2 = GaussianProcessRegressor(kernel=self.kernel,
-        ##                                    n_restarts_optimizer=9,
-        ##                                    normalize_y= self.normalize_y,
-        ##                                    alpha=1e-2, random_state=0)
-        ## if self.normalize_target:
-        ##     gp1.fit(self.x, self.y_scaled)
-        ##     gp2.fit(self.x, self.z_scaled)
-        ##     
-        ## else: 
-        ##     gp1.fit(self.x, self.y)
-        ##     gp2.fit(self.x, self.z)
-        ##         
-        ## rf1 = self.define_rf_model()
-        ## rf2 = self.define_rf_model()
-        ## rf1.fit(self.x, self.y)
-        ## rf2.fit(self.x, self.z)
-        
-        #gp1 = self.gp1
-        #gp2 = self.gp2
+    def MO_next_suggestions(self):  
         rf1 = self.model1
         rf2 = self.model2
-        
         gp = GaussianProcessRegressor(kernel=self.kernel,
                                            n_restarts_optimizer=9,
                                            normalize_y= self.normalize_y,
@@ -285,11 +245,8 @@ class alloys_bayes_opt:
                                            
         if self.normalize_target:
              gp.fit(self.x, self.y_scaled * self.z_scaled)
-        
-        
         else: 
              gp.fit(self.x, self.y * self.z)
-             
              
         n = self.iter_num
         for i in range(n):
@@ -298,32 +255,18 @@ class alloys_bayes_opt:
             print()
             self.samples_df = self.sampler() ### if we don't want to append sampler within the i iterations
             samples_df = self.samples_df
-                
-                
             utils = gp.predict(samples_df, return_std = True)[0]+ self.kappa*(gp.predict(samples_df, return_std = True)[1])
-            
-            
-            
             next_point_index = np.argmax(utils)
-            
-
-
             X_next = self.samples_df.iloc[next_point_index, :]
             Y_next = rf1.predict(X_next.values.reshape(1,-1)) 
             Z_next = rf2.predict(X_next.values.reshape(1,-1)) 
             
             Next_alloy = pd.concat([pd.Series(X_next), pd.Series(Y_next)], axis=0, ignore_index=True)
-            #Next_alloy = pd.concat([Next_alloy, pd.Series(predicted_Y[next_point_index])], axis=0, ignore_index=True)
             Next_alloy = pd.concat([Next_alloy, pd.Series(Z_next)], axis=0, ignore_index=True)
-            #Next_alloy = pd.concat([Next_alloy, pd.Series(predicted_Z[next_point_index])], axis=0, ignore_index=True)
             
             
             self.MO_bo_suggestion_df.loc[self.MO_bo_suggestion_df.shape[0]] = list(Next_alloy) # to add a new row to dataframe with the same columns order
             
-            
-      
-      
-    
         return  self.MO_bo_suggestion_df
         
         
