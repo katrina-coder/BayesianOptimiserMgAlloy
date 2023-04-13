@@ -89,13 +89,7 @@ class alloys_bayes_opt:
             scaler = MinMaxScaler()
             self.y_scaled = scaler.fit_transform(self.y.values.reshape(-1,1))
             self.z_scaled = scaler.fit_transform(self.z.values.reshape(-1,1))
-            
-            #self.gp1 = gp_model_list[0]
-            #self.gp2 = gp_model_list[1]  
-            self.model1 = rf_model_list[0]
-            self.model2 = rf_model_list[1]
-            
-            
+                        
         self.gp_result_df = pd.DataFrame(columns=['Kernel','iteration', 'GP_Score', 
                                                   'GP_LOGlikelihood' , 'GP_Predicted_Max', 
                                                   'GP_Std_Max',  'GP_VARcriteria'])
