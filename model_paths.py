@@ -2,7 +2,7 @@ import warnings
 import joblib
 
 if 'google.colab' in str(get_ipython()):
-    model_dir = "BayesianOptimiser-MgAlloy/models"
+    model_dir = "BayesianOptimiserMgAlloy/models"
 else:
     model_dir = "models"
 
