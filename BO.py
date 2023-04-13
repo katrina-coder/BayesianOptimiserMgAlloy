@@ -73,6 +73,10 @@ class alloys_bayes_opt:
             self.bo_suggestion_df = pd.DataFrame(columns= self.elem_og_sorted +
                                              [self.output_names[0] + "_model" 
                                               ])
+            if 'UTS' in self.output_names:
+                self.y = UTS
+            else:
+                self.y = Ductility
             self.gp = gp_model_list[0]
             self.model = rf_model_list[0]
             
@@ -82,6 +86,12 @@ class alloys_bayes_opt:
                                                  
                                                  output_names[1] + "_model"  
                                                  ])
+            self.y = UTS
+            self.z = Ductility
+            scaler = MinMaxScaler()
+            self.y_scaled = scaler.fit_transform(self.y.values.reshape(-1,1))
+            self.z_scaled = scaler.fit_transform(self.z.values.reshape(-1,1))
+            
             #self.gp1 = gp_model_list[0]
             #self.gp2 = gp_model_list[1]  
             self.model1 = rf_model_list[0]
@@ -92,15 +102,17 @@ class alloys_bayes_opt:
                                                   'GP_LOGlikelihood' , 'GP_Predicted_Max', 
                                                   'GP_Std_Max',  'GP_VARcriteria'])
 
-        # self.gp = GaussianProcessRegressor(kernel=self.kernel,
-        #                                    n_restarts_optimizer=9,
-        #                                    normalize_y= self.normalize_y,
-        #                                    alpha=1e-2, random_state=0)
-        # self.gp.fit(self.x, self.y)
+        self.gp = GaussianProcessRegressor(kernel=self.kernel,
+                                           n_restarts_optimizer=9,
+                                           normalize_y= self.normalize_y,
+                                           alpha=1e-2, random_state=0)
+        self.gp.fit(self.x, self.y)
             
         self.utility = UtilityFunction(kind=self.util_type, kappa=self.kappa, xi=0)
-        
+        self.model = self.define_rf_model()
+        self.model.fit(self.x,self.y)
        
+      
     @staticmethod
     def get_kernel(kernel):
         if kernel == 'dot_white':
