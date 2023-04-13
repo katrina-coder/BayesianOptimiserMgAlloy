@@ -344,7 +344,7 @@ class alloys_bayes_opt_append:
                  
             utils = gp.predict(samples_df, return_std = True)[0]+ self.kappa*(gp.predict(samples_df, return_std = True)[1].reshape(-1,1))
             print('gp mean shape: ',gp.predict(samples_df, return_std = True)[0].shape)
-            print('gp std shape: ',gp.predict(samples_df, return_std = True)[1].reshape(-1,1).shape)
+            print('gp std shape: ',gp.predict(samples_df, return_std = True)[1].shape)
             print(self.kappa)
             
             
