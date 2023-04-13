@@ -15,9 +15,32 @@ import copy
 import time
 
 
+OG_bound_dict = {'Mg': (80.0, 95.0), 'Zn': (0.0, 14.3),'Al': (0.0, 11.0), 'Mn': (0.0, 2.0),
+                           'Nd': (0.0, 8.05), 'Ce': (0.0, 3.92), 'La': (0.0, 6.0), 'Zr': (0.0, 3.0),
+                           'Cu': (0.0, 0.5), 'Si': (0.0, 5.0), 'Y': (0.0, 19.0), 'Ca': (0.0, 10.0),
+                           'Pr': (0.0, 1.76), 'Ni': (0.0, 1.0), 'Be': (0.0, 0.0), 'Fe': (0.0, 0.0),
+                           'Li': (0.0, 3.0), 'Gd': (0.0, 10.0), 'Th': (0.0, 0.0), 'Sn': (0.0, 9.56),
+                           'Sb': (0.0, 1.0001), 'Ag': (0.0, 0.5), 'Ga': (0, 1.0), 'Yb': (0, 3),
+                           'Bi': (0.0, 0.5), 'Sc': (0.0, 0.5), 'Dy': (0.0, 0.0), 'Sr': (0.0, 2.45),
+                           'Tb': (0.0, 1.0), 'Er': (0.0, 6.0), 'Ho': (0.0, 1.4),
+                           'Extruded': (0,1), 'ECAP': (0,1), 'Cast_Slow': (0,1),
+                           'Cast_Fast': (0,1), 'Cast_HT': (0,1),'Wrought': (0,1)}
+
+
+OG_bound_dict = dict(sorted(OG_bound_dict.items(), key=lambda item: item[1][1], reverse=True))
+CHT = list(OG_bound_dict.keys())
+
+
+data = alloysHT.data.drop_duplicates(subset = CHT, inplace=False)
+X = data[CHT] # Comp + HT
+UTS = data["UTS(MPa)"] #UTS
+Ductility = data["Ductility"]
+
+
+
 # todo: we need two models for normalized output and not normalized one
 class alloys_bayes_opt:
-    def __init__(self, gp_model_list, rf_model_list, output_names = ['UTS', 'Ductility'] ,kernel='rat_quad', normalize_y=False, 
+    def __init__(self, x=X, y=None, z=None, output_names = ['UTS', 'Ductility'] ,kernel='rat_quad', normalize_y=False, 
                  num_elems= 6, sum_elems = 20, sample_size=10000,
                  append_suggestion=False, iter_num=10, 
                  model_name='rf', kappa = 0.05, util_type = 'ucb', bound_dict = [] , normalize_target=True):
@@ -34,7 +57,9 @@ class alloys_bayes_opt:
         self.model_name = model_name
         self.kappa = kappa
         self.util_type = util_type # ucb, ei, poi
-        
+        self.x = x
+        self.y = y
+        self.z = z
         self.output_names = output_names
         
         self.normalize_target = normalize_target
