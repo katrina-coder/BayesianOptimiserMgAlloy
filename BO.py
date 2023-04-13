@@ -40,7 +40,7 @@ Ductility = data["Ductility"]
 
 # todo: we need two models for normalized output and not normalized one
 class alloys_bayes_opt:
-    def __init__(self, x=X, y=None, z=None, output_names = ['UTS', 'Ductility'] ,kernel='rat_quad', normalize_y=False, 
+    def __init__(self, gp_model_list, rf_model_list, x=X, y=None, z=None, output_names = ['UTS', 'Ductility'] ,kernel='rat_quad', normalize_y=False, 
                  num_elems= 6, sum_elems = 20, sample_size=10000,
                  append_suggestion=False, iter_num=10, 
                  model_name='rf', kappa = 0.05, util_type = 'ucb', bound_dict = [] , normalize_target=True):
