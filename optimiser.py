@@ -53,8 +53,8 @@ class scanSettings:
             self.num_elems = 6
             self.sum_elems = 20
             self.output_names = ['UTS', 'Ductility']
-            self.normalize_target = 'True'
-            self.append_suggestion = 'True'
+            self.normalize_target = 'Yes'
+            self.append_suggestion = 'Yes'
             
             # todo: check arrange of bound dict
             self.range_based_inputs =  {
