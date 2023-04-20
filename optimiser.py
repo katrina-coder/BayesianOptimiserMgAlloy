@@ -55,6 +55,7 @@ class scanSettings:
             self.output_names = ['UTS', 'Ductility']
             self.normalize_target = 'Yes'
             self.append_suggestion = 'Yes'
+            self.HT = 'True'
             
             # todo: check arrange of bound dict
             self.range_based_inputs =  {
