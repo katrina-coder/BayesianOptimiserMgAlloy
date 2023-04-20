@@ -87,7 +87,7 @@ def generateMainGUI(mode):
         GUI_inputs["bo_settings"]["Heat Treatment"] = {}
         for key in ['Extruded', 'ECAP','Cast_Slow', 'Cast_Fast', 'Cast_HT','Wrought']:
             key_label = widgets.Label(f"{key}:", layout=Layout(width='80px'))
-            input_box = widgets.RadioButtons(value=settings.normalize_target, options=['True', 'False'], description = '', disabled=False, indent=False)
+            input_box = widgets.RadioButtons(value=settings.HT, options=['True', 'False'], description = '', disabled=False, indent=False)
             ht_settings_VBox.append(HBox([key_label, input_box]))
             GUI_inputs["bo_settings"]["Heat Treatment"][key] = input_box 
         
