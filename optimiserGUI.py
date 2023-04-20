@@ -25,8 +25,8 @@ def extractSettingsFromGUI(GUI_inputs, mode):
     settings.num_of_suggestions = int(GUI_inputs['bo_settings']['Number of Suggestions'].value)
     settings.num_elems = int(GUI_inputs['bo_settings']['Number of Elements'].value) 
     settings.sum_elems = int(GUI_inputs['bo_settings']['Percentage Sum of Elements'].value) 
-    settings.normalize_target = [True if GUI_inputs["bo_settings"]["Normalize Target"].value=='True' else False][0]
-    settings.append_suggestion = [True if GUI_inputs["bo_settings"]["Append Suggestion"].value=='True' else False][0] 
+    settings.normalize_target = [True if GUI_inputs["bo_settings"]["Normalize Target"].value=='Yes' else False][0]
+    settings.append_suggestion = [True if GUI_inputs["bo_settings"]["Append Suggestion"].value=='Yes' else False][0] 
     output_names = []
     if GUI_inputs["bo_settings"]["Output Names"].value == 'UTS':
         output_names = ['UTS']
@@ -114,12 +114,12 @@ def generateMainGUI(mode):
         GUI_inputs["bo_settings"]["Percentage Sum of Elements"] = input_box
         
         label = widgets.Label("Normalize Target: ",layout=Layout(width=bo_settings_width))
-        input_box = widgets.RadioButtons(value=settings.normalize_target, options=['True', 'False'], description = '', disabled=False, indent=False)
+        input_box = widgets.RadioButtons(value=settings.normalize_target, options=['Yes', 'No'], description = '', disabled=False, indent=False)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Normalize Target"] = input_box 
         
         label = widgets.Label("Append Suggestion in Iterations: ",layout=Layout(width=bo_settings_width))
-        input_box = widgets.RadioButtons(value=settings.append_suggestion, options=['True', 'False'], description = '', disabled=False, indent=False)
+        input_box = widgets.RadioButtons(value=settings.append_suggestion, options=['Yes', 'No'], description = '', disabled=False, indent=False)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Append Suggestion"] = input_box 
         
@@ -191,7 +191,7 @@ def generateMainGUI(mode):
         GUI_inputs["bo_settings"]["Percentage Sum of Elements"] = input_box
         
         label = widgets.Label("Normalize Target: ")
-        input_box = widgets.RadioButtons(value=settings.normalize_target, options=['True', 'False'], description = '', disabled=False, indent=False)
+        input_box = widgets.RadioButtons(value=settings.normalize_target, options=['Yes', 'No'], description = '', disabled=False, indent=False)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Normalize Target"] = [True if input_box.value=='True' else False][0]
         
