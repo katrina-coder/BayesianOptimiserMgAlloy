@@ -83,7 +83,7 @@ def generateMainGUI(mode):
                 GUI_inputs["range_based_inputs"][key] = [lower_bound_box, upper_bound_box]
                     
         
-        ht_settings_VBox = [widgets.HTML("<b>Heat Treatment</b>")]
+        ht_settings_VBox = [widgets.HTML("<b>Thermomechanical process</b>")]
         GUI_inputs["bo_settings"]["Heat Treatment"] = {}
         for key in ['Extruded', 'ECAP','Cast_Slow', 'Cast_Fast', 'Cast_HT','Wrought']:
             key_label = widgets.Label(f"{key}:", layout=Layout(width='80px'))
