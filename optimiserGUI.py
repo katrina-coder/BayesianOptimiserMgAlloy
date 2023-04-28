@@ -136,7 +136,7 @@ def generateMainGUI(mode):
         display(HBox([first_column, second_column]))
     
         run_scan_button = widgets.Button(
-                                         description="Run Optimiser", 
+                                         #description="Run Optimiser", 
                                          icon='play')
         display(run_scan_button)
         
@@ -240,7 +240,7 @@ def generateMainGUI(mode):
         display(HBox([first_column, second_column]))
     
         run_scan_button = widgets.Button(
-                                         description="Run Optimiser", 
+                                         #description="Run Optimiser", 
                                          icon='play')
         display(run_scan_button)
         
