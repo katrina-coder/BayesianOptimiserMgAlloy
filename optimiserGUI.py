@@ -135,7 +135,9 @@ def generateMainGUI(mode):
                             VBox(scan_settings_VBox)], layout=LEFT_RIGHT_PADDING)
         display(HBox([first_column, second_column]))
     
-        run_scan_button = widgets.Button(description="Run Optimiser")
+        run_scan_button = widgets.Button(
+                                         description="Run Optimiser", 
+                                         icon='play')
         display(run_scan_button)
         
         def on_button_clicked(b):
@@ -237,7 +239,9 @@ def generateMainGUI(mode):
                             VBox(scan_settings_VBox)], layout=LEFT_RIGHT_PADDING)
         display(HBox([first_column, second_column]))
     
-        run_scan_button = widgets.Button(description="Run Optimiser")
+        run_scan_button = widgets.Button(
+                                         description="Run Optimiser", 
+                                         icon='play')
         display(run_scan_button)
         
         def on_button_clicked(b):
