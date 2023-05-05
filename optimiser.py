@@ -153,7 +153,7 @@ class optimiser:
         
         df.to_csv(str(random.random())+' suggestions.csv',index=False)
         disp.display(df)
-        print('==========Bayesian Optimization Finished==========')
+        print('========== Bayesian Optimization Finished ==========')
         print()
         
 
