@@ -134,6 +134,8 @@ def generateMainGUI(mode):
         second_column = VBox([VBox(ht_settings_VBox),
                             # VBox(categorical_inputs_VBox, layout=BOTTOM_PADDING),
                             VBox(scan_settings_VBox)], layout=LEFT_RIGHT_PADDING)
+        
+        display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
         display(HBox([first_column, second_column]))
     
         run_scan_button = widgets.Button(
@@ -142,7 +144,7 @@ def generateMainGUI(mode):
         display(run_scan_button)
         
         def on_button_clicked(b):
-            print('==========Bayesian Optimization Started==========')
+            print('========== Bayesian Optimization Started ==========')
             optimiser(extractSettingsFromGUI(GUI_inputs, mode))
     
         run_scan_button.on_click(on_button_clicked)
