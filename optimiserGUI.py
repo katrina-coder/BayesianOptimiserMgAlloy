@@ -11,8 +11,8 @@ else:
 def extractSettingsFromGUI(GUI_inputs, mode):
     settings = scanSettings(mode)
     uppers = []
-    for key in settings.range_based_inputs:
-        if key not in ['Extruded', 'ECAP','Cast (slow cool)', 'Cast (fast cool)', 'Cast and Heat-treated','Wrought']:
+    for key in settings.range_based_inputs: 
+        if key not in ['Extruded', 'ECAP','Cast_Slow', 'Cast_Fast', 'Cast_HT','Wrought']:
             settings.range_based_inputs[key] = [GUI_inputs['range_based_inputs'][key][0].value,
                                                 GUI_inputs['range_based_inputs'][key][1].value] 
         else:
@@ -75,7 +75,7 @@ def generateMainGUI(mode):
     
         range_based_inputs_VBox = [widgets.HTML("<b>Compositional range (wt. %) </b>")]
         for key in settings.range_based_inputs:
-            if key not in ['Extruded', 'ECAP','Cast (slow cool)', 'Cast (fast cool)', 'Cast and Heat-treated', 'Wrought']:
+            if key not in ['Extruded', 'ECAP', 'Cast_Slow', 'Cast_Fast', 'Cast_HT', 'Wrought']:
                 key_label = widgets.Label(f"{key}:", layout=Layout(width=KEY_LABEL_WIDTH))
                 lower_bound_box = widgets.FloatText(value=settings.range_based_inputs[key][0], layout=default_input_box_layout)
                 to_label = widgets.Label("to", layout=Layout(width=TO_LABEL_WIDTH))
@@ -86,11 +86,13 @@ def generateMainGUI(mode):
         
         ht_settings_VBox = [widgets.HTML("<b>Thermomechanical process</b>")]
         GUI_inputs["bo_settings"]["Heat Treatment"] = {}
-        for key in ['Extruded', 'ECAP','Cast (slow cool)', 'Cast (fast cool)', 'Cast and Heat-treated', 'Wrought']:
-            key_label = widgets.Label(f"{key}:", layout=Layout(width='80px'))
+        ht_names = ['Extruded', 'ECAP', 'Cast (slow cool)', 'Cast (fast cool)', 'Cast and Heat-treated',  'Wrought']
+        ht_keys = ['Extruded', 'ECAP', 'Cast_Slow', 'Cast_Fast', 'Cast_HT', 'Wrought']
+        for i in range(len(ht_keys)):
+            key_label = widgets.Label(f"{ht_names[i]}:", layout=Layout(width='80px'))
             input_box = widgets.RadioButtons(value=settings.HT, options=['True', 'False'], description = '', disabled=False, indent=False)
             ht_settings_VBox.append(HBox([key_label, input_box]))
-            GUI_inputs["bo_settings"]["Heat Treatment"][key] = input_box 
+            GUI_inputs["bo_settings"]["Heat Treatment"][ht_keys[i]] = input_box 
         
         bo_settings_width = '200px'
         scan_settings_VBox = [widgets.HTML("<b>Bayesian-Optimization Settings</b>")]
