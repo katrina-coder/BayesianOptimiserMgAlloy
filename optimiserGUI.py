@@ -201,12 +201,12 @@ def generateMainGUI(mode):
         GUI_inputs["bo_settings"]["Normalize Target"] = [True if input_box.value=='True' else False][0]
         
         label = widgets.Label("Output: ")
-        input_box = widgets.RadioButtons(value=settings.output_names[0], options=['UTS', 'Ductility', 'Both'], description = '', disabled=False, indent=False)
+        input_box = widgets.RadioButtons(value=settings.output_names[0], options=['UTS only', 'Ductility only', 'Both UTS and Ductility'], description = '', disabled=False, indent=False)
         scan_settings_VBox.append(HBox([label, input_box]))
         output_names = []
-        if input_box.value == 'UTS':
+        if input_box.value == 'UTS only':
             output_names = ['UTS']
-        elif input_box.value == 'Ductility':
+        elif input_box.value == 'Ductility only':
             output_names = ['Ductility']
         else:
             output_names = ['UTS', 'Ductility']
