@@ -125,7 +125,7 @@ def generateMainGUI(mode):
         GUI_inputs["bo_settings"]["Append Suggestion"] = input_box 
         
         
-        label = widgets.Label("Output: ",layout=Layout(width=bo_settings_width))
+        label = widgets.Label("Output designed alloys to be optimised for: ",layout=Layout(width=bo_settings_width))
         input_box = widgets.RadioButtons(value='Both', options=['UTS', 'Ductility', 'Both'], description = '', disabled=False, indent=False)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Output Names"] = input_box
