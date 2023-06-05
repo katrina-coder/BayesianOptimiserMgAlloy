@@ -104,12 +104,12 @@ def generateMainGUI(mode):
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Number of Suggestions"] = input_box
         
-        label = widgets.Label("Number of Elements: ",layout=Layout(width=bo_settings_width))
+        label = widgets.Label("Max. number of alloying lements: ",layout=Layout(width=bo_settings_width))
         input_box = widgets.FloatText(value=settings.num_elems, layout=default_input_box_layout)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Number of Elements"] = input_box
         
-        label = widgets.Label("Percentage Sum of Elements: ",layout=Layout(width=bo_settings_width))
+        label = widgets.Label("Max. sum of alloying elements (wt. %): ",layout=Layout(width=bo_settings_width))
         input_box = widgets.FloatText(value=settings.sum_elems, layout=default_input_box_layout)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Percentage Sum of Elements"] = input_box
@@ -185,12 +185,12 @@ def generateMainGUI(mode):
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Number of Suggestions"] = input_box
         
-        label = widgets.Label("Number of Elements: ")
+        label = widgets.Label("Max. number of alloying elements: ")
         input_box = widgets.FloatText(value=settings.num_elems, layout=default_input_box_layout)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Number of Elements"] = input_box
         
-        label = widgets.Label("Percentage Sum of Elements: ")
+        label = widgets.Label("Max. sum of alloying elements (wt. %): ")
         input_box = widgets.FloatText(value=settings.sum_elems, layout=default_input_box_layout)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Percentage Sum of Elements"] = input_box
