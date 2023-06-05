@@ -114,7 +114,7 @@ def generateMainGUI(mode):
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Percentage Sum of Elements"] = input_box
         
-        label = widgets.Label("Normalize Target: ",layout=Layout(width=bo_settings_width))
+        label = widgets.Label("Normalise Target: ",layout=Layout(width=bo_settings_width))
         input_box = widgets.RadioButtons(value=settings.normalize_target, options=['Yes', 'No'], description = '', disabled=False, indent=False)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Normalize Target"] = input_box 
@@ -195,7 +195,7 @@ def generateMainGUI(mode):
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Percentage Sum of Elements"] = input_box
         
-        label = widgets.Label("Normalize Target: ")
+        label = widgets.Label("Normalise Target: ")
         input_box = widgets.RadioButtons(value=settings.normalize_target, options=['Yes', 'No'], description = '', disabled=False, indent=False)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Normalize Target"] = [True if input_box.value=='True' else False][0]
