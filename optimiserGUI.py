@@ -144,7 +144,7 @@ def generateMainGUI(mode):
         display(run_scan_button)
         
         def on_button_clicked(b):
-            print('========== Bayesian Optimization Started ==========')
+            print('========== Bayesian Optimisation Started ==========')
             optimiser(extractSettingsFromGUI(GUI_inputs, mode))
     
         run_scan_button.on_click(on_button_clicked)
@@ -249,7 +249,7 @@ def generateMainGUI(mode):
         display(run_scan_button)
         
         def on_button_clicked(b):
-            print('========== Bayesian Optimization Started ==========')
+            print('========== Bayesian Optimisation Started ==========')
             optimiser(extractSettingsFromGUI(GUI_inputs, mode))
     
         run_scan_button.on_click(on_button_clicked)
