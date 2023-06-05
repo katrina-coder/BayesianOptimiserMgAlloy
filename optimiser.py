@@ -70,9 +70,9 @@ class scanSettings:
                 'Mn': (0.0, 2.0), 'Pr': (0.0, 1.76),
                 'Ho': (0.0, 1.4), 'Sb': (0.0, 1.0001),
                 'Ni': (0.0, 1.0), 'Ga': (0, 1.0),
-                'Tb': (0.0, 1.0),
-                'Extruded': (0, 1), 'ECAP': (0, 1), 'Cast (slow cool)': (0, 1),
-                'Cast (fast cool)': (0, 1), 'Cast and Heat-treated': (0, 1), 'Wrought': (0, 1),
+                'Tb': (0.0, 1.0),   'Cast_Slow', 'Cast_Fast', 'Cast_HT'
+                'Extruded': (0, 1), 'ECAP': (0, 1), 'Cast_Slow'': (0, 1),
+                'Cast_Fast': (0, 1), 'Cast_HT': (0, 1), 'Wrought': (0, 1),
                 'Cu': (0.0, 0.5), 'Ag': (0.0, 0.5),
                 'Bi': (0.0, 0.5), 'Sc': (0.0, 0.5),
                 'Be': (0.0, 0.0), 'Fe': (0.0, 0.0),
