@@ -29,9 +29,9 @@ def extractSettingsFromGUI(GUI_inputs, mode):
     settings.normalize_target = [True if GUI_inputs["bo_settings"]["Normalize Target"].value=='Yes' else False][0]
     settings.append_suggestion = [True if GUI_inputs["bo_settings"]["Append Suggestion"].value=='Yes' else False][0] 
     output_names = []
-    if GUI_inputs["bo_settings"]["Output Names"].value == 'UTS':
+    if GUI_inputs["bo_settings"]["Output Names"].value == 'UTS only':
         output_names = ['UTS']
-    elif GUI_inputs["bo_settings"]["Output Names"].value == 'Ductility':
+    elif GUI_inputs["bo_settings"]["Output Names"].value == 'Ductility only':
         output_names = ['Ductility']
     else:
         output_names = ['UTS', 'Ductility']
