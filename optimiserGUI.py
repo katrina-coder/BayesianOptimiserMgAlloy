@@ -89,7 +89,7 @@ def generateMainGUI(mode):
         ht_names = ['Extruded', 'ECAP', 'Cast (slow cool)', 'Cast (fast cool)', 'Cast and Heat-treated',  'Wrought']
         ht_keys = ['Extruded', 'ECAP', 'Cast_Slow', 'Cast_Fast', 'Cast_HT', 'Wrought']
         for i in range(len(ht_keys)):
-            key_label = widgets.Label(f"{ht_names[i]}:", layout=Layout(width='120px'))
+            key_label = widgets.Label(f"{ht_names[i]}:", layout=Layout(width='210px'))
             input_box = widgets.RadioButtons(value=settings.HT, options=['True', 'False'], description = '', disabled=False, indent=False)
             ht_settings_VBox.append(HBox([key_label, input_box]))
             GUI_inputs["bo_settings"]["Heat Treatment"][ht_keys[i]] = input_box 
