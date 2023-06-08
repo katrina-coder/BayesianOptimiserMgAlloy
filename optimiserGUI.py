@@ -94,7 +94,7 @@ def generateMainGUI(mode):
             ht_settings_VBox.append(HBox([key_label, input_box]))
             GUI_inputs["bo_settings"]["Heat Treatment"][ht_keys[i]] = input_box 
         
-        bo_settings_width = '200px'
+        bo_settings_width = '300px'
         scan_settings_VBox = [widgets.HTML("<b>Bayesian-Optimisation settings</b>")]
         label = widgets.Label("Sampling size: ",layout=Layout(width=bo_settings_width))
         input_box = widgets.FloatText(value=settings.sampling_size, layout=default_input_box_layout)
@@ -111,7 +111,7 @@ def generateMainGUI(mode):
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Number of Elements"] = input_box
         
-        label = widgets.Label('<style>p{word-wrap: break-word}</style> <p>' + "Max. sum of alloying elements (wt. %): " + ' </p>',layout=Layout(width=bo_settings_width))
+        label = widgets.Label("Max. sum of alloying elements (wt. %): ",layout=Layout(width=bo_settings_width))
         input_box = widgets.FloatText(value=settings.sum_elems, layout=default_input_box_layout)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Percentage Sum of Elements"] = input_box
@@ -192,7 +192,7 @@ def generateMainGUI(mode):
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Number of Elements"] = input_box
         
-        label = widgets.Label('<style>p{word-wrap: break-word}</style> <p>' + "Max. sum of alloying elements (wt. %): " + ' </p>')
+        label = widgets.Label("Max. sum of alloying elements (wt. %): ")
         input_box = widgets.FloatText(value=settings.sum_elems, layout=default_input_box_layout)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Percentage Sum of Elements"] = input_box
