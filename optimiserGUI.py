@@ -40,7 +40,7 @@ def extractSettingsFromGUI(GUI_inputs, mode):
 
 def generateModeSelectionGUI(mode = 'Bayesian Optimization'):
     mode_dropdown = widgets.Dropdown(
-        options=['Bayesian Optimization'],
+        options=['Bayesian Optimisation'],
         value=mode,
         description='<b>Select Mode:</b>',
         style={'description_width': 'initial'},
@@ -95,18 +95,18 @@ def generateMainGUI(mode):
             GUI_inputs["bo_settings"]["Heat Treatment"][ht_keys[i]] = input_box 
         
         bo_settings_width = '200px'
-        scan_settings_VBox = [widgets.HTML("<b>Bayesian-Optimization Settings</b>")]
-        label = widgets.Label("Sampling Size: ",layout=Layout(width=bo_settings_width))
+        scan_settings_VBox = [widgets.HTML("<b>Bayesian-Optimisation Settings</b>")]
+        label = widgets.Label("Sampling size: ",layout=Layout(width=bo_settings_width))
         input_box = widgets.FloatText(value=settings.sampling_size, layout=default_input_box_layout)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Sampling Size"] = input_box
         
-        label = widgets.Label("Number of Suggestions: ",layout=Layout(width=bo_settings_width))
+        label = widgets.Label("Number of suggestions: ",layout=Layout(width=bo_settings_width))
         input_box = widgets.FloatText(value=settings.num_of_suggestions, layout=default_input_box_layout)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Number of Suggestions"] = input_box
         
-        label = widgets.Label("Max. number of alloying lements: ",layout=Layout(width=bo_settings_width))
+        label = widgets.Label("Max. number of alloying elements: ",layout=Layout(width=bo_settings_width))
         input_box = widgets.FloatText(value=settings.num_elems, layout=default_input_box_layout)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Number of Elements"] = input_box
@@ -116,12 +116,12 @@ def generateMainGUI(mode):
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Percentage Sum of Elements"] = input_box
         
-        label = widgets.Label("Normalise Target: ",layout=Layout(width=bo_settings_width))
+        label = widgets.Label("Normalise target: ",layout=Layout(width=bo_settings_width))
         input_box = widgets.RadioButtons(value=settings.normalize_target, options=['Yes', 'No'], description = '', disabled=False, indent=False)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Normalize Target"] = input_box 
         
-        label = widgets.Label("Append Suggestion in Iterations: ",layout=Layout(width=bo_settings_width))
+        label = widgets.Label("Append suggestion in iterations: ",layout=Layout(width=bo_settings_width))
         input_box = widgets.RadioButtons(value=settings.append_suggestion, options=['Yes', 'No'], description = '', disabled=False, indent=False)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Append Suggestion"] = input_box 
