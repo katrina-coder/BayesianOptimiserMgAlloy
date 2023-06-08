@@ -89,12 +89,12 @@ def generateMainGUI(mode):
         ht_names = ['Extruded', 'ECAP', 'Cast (slow cool)', 'Cast (fast cool)', 'Cast and Heat-treated',  'Wrought']
         ht_keys = ['Extruded', 'ECAP', 'Cast_Slow', 'Cast_Fast', 'Cast_HT', 'Wrought']
         for i in range(len(ht_keys)):
-            key_label = widgets.Label(f"{ht_names[i]}:", layout=Layout(width='80px'))
+            key_label = widgets.Label(f"{ht_names[i]}:", layout=Layout(width='120px'))
             input_box = widgets.RadioButtons(value=settings.HT, options=['True', 'False'], description = '', disabled=False, indent=False)
             ht_settings_VBox.append(HBox([key_label, input_box]))
             GUI_inputs["bo_settings"]["Heat Treatment"][ht_keys[i]] = input_box 
         
-        bo_settings_width = '300px'
+        bo_settings_width = '270px'
         scan_settings_VBox = [widgets.HTML("<b>Bayesian-Optimisation settings</b>")]
         label = widgets.Label("Sampling size: ",layout=Layout(width=bo_settings_width))
         input_box = widgets.FloatText(value=settings.sampling_size, layout=default_input_box_layout)
