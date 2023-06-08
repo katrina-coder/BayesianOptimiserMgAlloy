@@ -38,7 +38,7 @@ def extractSettingsFromGUI(GUI_inputs, mode):
     settings.output_names = output_names
     return settings
 
-def generateModeSelectionGUI(mode = 'Bayesian Optimization'):
+def generateModeSelectionGUI(mode = 'Bayesian Optimisation'):
     mode_dropdown = widgets.Dropdown(
         options=['Bayesian Optimisation'],
         value=mode,
@@ -66,7 +66,7 @@ def generateMainGUI(mode):
 
     default_input_box_layout = Layout(width=INPUT_BOX_WIDTH, height=INPUT_BOX_HEIGHT)
 
-    if mode=='Bayesian Optimization':
+    if mode=='Bayesian Optimisation':
         GUI_inputs = {"range_based_inputs": {},
                     # "constant_inputs": {},
                     # "categorical_inputs": {},
@@ -176,7 +176,7 @@ def generateMainGUI(mode):
                 constant_inputs_VBox.append(HBox([key_label, value_box]))
                 GUI_inputs["constant_inputs"][key] = value_box
     
-        scan_settings_VBox = [widgets.HTML("<b>Bayesian-Optimization Settings</b>")]
+        scan_settings_VBox = [widgets.HTML("<b>Bayesian-Optimisation Settings</b>")]
         label = widgets.Label("Sampling Size: ")
         input_box = widgets.FloatText(value=settings.sampling_size, layout=default_input_box_layout)
         scan_settings_VBox.append(HBox([label, input_box]))
