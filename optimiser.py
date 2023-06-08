@@ -47,7 +47,7 @@ class AlDatapoint:
 class scanSettings:
     def __init__(self, mode):
         self.mode = mode
-        if self.mode == 'Bayesian Optimization':
+        if self.mode == 'Bayesian Optimisation':
             self.sampling_size = 100000
             self.num_of_suggestions = 20
             self.num_elems = 6
