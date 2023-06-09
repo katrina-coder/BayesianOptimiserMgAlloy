@@ -96,7 +96,7 @@ def generateMainGUI(mode):
         
         bo_settings_width = '270px'
         scan_settings_VBox = [widgets.HTML("<b>Bayesian-Optimisation settings</b>")]
-        label = widgets.Label("Sampling size: ",layout=Layout(width=bo_settings_width))
+        label = widgets.Label("Sample size: ",layout=Layout(width=bo_settings_width))
         input_box = widgets.FloatText(value=settings.sampling_size, layout=default_input_box_layout)
         scan_settings_VBox.append(HBox([label, input_box]))
         GUI_inputs["bo_settings"]["Sampling Size"] = input_box
